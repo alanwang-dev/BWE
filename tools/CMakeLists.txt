@@ -1,0 +1,2 @@
+add_executable(bwe_fit_runner bwe_fit_runner.cpp)
+target_link_libraries(bwe_fit_runner PRIVATE bwe_sim)

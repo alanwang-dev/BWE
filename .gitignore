@@ -1,0 +1,38 @@
+# Build
+build/
+out/
+*.o
+*.a
+*.so
+*.dylib
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Plots / output
+plots/
+*.png
+*.csv
+
+# IDE / OS
+.vscode/
+.idea/
+.cache/
+.DS_Store
+*.swp
+*.swo
+
+# TODO (local notes)
+TODO.md

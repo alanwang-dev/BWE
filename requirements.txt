@@ -1,0 +1,4 @@
+# For scripts/run_all_fit_and_plot.py and scripts/plot_fit.py
+matplotlib>=3.5.0
+# For scripts that read config/datasets.yaml
+PyYAML>=5.4

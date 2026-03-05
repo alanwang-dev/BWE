@@ -1,0 +1,37 @@
+# Data sources for BWE validation. Single source of truth for scripts:
+# - scripts/download_datasets.py (--id / --all)
+# - scripts/run_all_fit_and_plot.py and validate.sh (--source)
+
+synthetic:
+  description: "In-repo simulator (test_common), 1 Hz"
+  scenarios:
+    - id: stable_wifi
+      name: Stable Wi-Fi
+    - id: mobile
+      name: Mobile (4G/5G fluctuating)
+    - id: congestion
+      name: Sudden congestion
+    - id: high_rtt
+      name: High RTT stable bandwidth
+    - id: burst_loss
+      name: Burst loss
+    - id: uplink
+      name: Uplink congestion
+
+external:
+  - id: bytedance_bwe
+    name: ByteDance Bandwidth Estimation Dataset
+    url: https://huggingface.co/datasets/ByteDance/BandwidthEstimationDataset
+    type: huggingface
+  - id: mmsys2024_bwe
+    name: ACM MMSys 2024 BWE Challenge
+    url: https://2024.acmmmsys.org/gc/ORL-BWE-RTC/
+    type: url
+  - id: microsoft_rl4bwe
+    name: Microsoft RL4BandwidthEstimationChallenge
+    url: https://github.com/microsoft/RL4BandwidthEstimationChallenge
+    type: github
+  - id: webrtc_testbed
+    name: WebRTC / C3Lab Testbed
+    url: https://c3lab.poliba.it/index.php?title=WebRTC_Testbed
+    type: url

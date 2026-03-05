@@ -5,11 +5,11 @@
 
 int main() {
   bwe::SignalPreprocessorConfig config;
-  config.throughput_ewma.alpha = 0.5;
-  config.rtt_ewma.alpha = 0.5;
-  config.jitter_ewma.alpha = 0.5;
-  config.rtt_median.window_size = 5;
-  config.jitter_median.window_size = 5;
+  config.throughput_ewma_alpha    = 0.5;
+  config.rtt_ewma_alpha           = 0.5;
+  config.jitter_ewma_alpha        = 0.5;
+  config.rtt_median_window        = 5;
+  config.jitter_median_window     = 5;
 
   bwe::SignalPreprocessor preprocessor(config);
 

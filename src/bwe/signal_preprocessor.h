@@ -6,26 +6,14 @@
 
 namespace bwe {
 
-struct EwmaConfig {
-  double alpha = 0.3;  // Smoothing factor in (0, 1].
-};
-
-struct MedianFilterConfig {
-  std::size_t window_size = 5;
-};
-
-struct OutlierConfig {
-  double max_z_score = 3.0;
-};
-
 struct SignalPreprocessorConfig {
-  EwmaConfig throughput_ewma;
-  EwmaConfig rtt_ewma;
-  EwmaConfig jitter_ewma;
-  MedianFilterConfig throughput_median;  // window for throughput spike filtering
-  MedianFilterConfig rtt_median;
-  MedianFilterConfig jitter_median;
-  OutlierConfig outlier;
+  double      throughput_ewma_alpha    = 0.3;
+  double      rtt_ewma_alpha           = 0.3;
+  double      jitter_ewma_alpha        = 0.3;
+  std::size_t throughput_median_window = 5;
+  std::size_t rtt_median_window        = 5;
+  std::size_t jitter_median_window     = 5;
+  double      outlier_max_z_score      = 3.0;
 };
 
 struct PreprocessedSignals {
@@ -45,14 +33,13 @@ class SignalPreprocessor {
   PreprocessedSignals signals() const { return signals_; }
 
  private:
-  double apply_ewma(double previous, double current,
-                    const EwmaConfig& config) const;
+  double apply_ewma(double previous, double current, double alpha) const;
 
   double apply_median(std::deque<double>* window,
                       std::size_t max_window_size) const;
 
   bool is_outlier(double value, const std::deque<double>& window,
-                  const OutlierConfig& config) const;
+                  double max_z_score) const;
 
   SignalPreprocessorConfig config_;
   PreprocessedSignals signals_;

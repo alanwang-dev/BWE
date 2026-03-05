@@ -4,10 +4,12 @@
 
 All data source **ids**, **names**, and **urls** are defined in [`data/datasets.yaml`](datasets.yaml). Two scripts read this config so they stay in sync:
 
-- **scripts/download_datasets.py** — `--list`, `--id <id>`, `--all` to download external sources to `data/<id>/`.
-- **scripts/run_all_fit_and_plot.py** and **validate.sh** — `--source all` or `--source <id>` to run fit on a given data source.
+- **scripts/data.sh** — single entry point for all data operations:
+  - `./scripts/data.sh list` — list all dataset ids
+  - `./scripts/data.sh dummy [duration]` — generate dummy trace
+  - `./scripts/data.sh download --all` / `--id <id>` — download external datasets
 
-List valid ids: `python3 scripts/run_all_fit_and_plot.py --list`.
+List valid ids: `./scripts/data.sh list`.
 
 ## Duration and synthetic data
 
@@ -23,4 +25,4 @@ List valid ids: `python3 scripts/run_all_fit_and_plot.py --list`.
 | microsoft_rl4bwe | Microsoft RL4BandwidthEstimationChallenge (GitHub). |
 | webrtc_testbed | WebRTC / C3Lab Testbed. |
 
-To use an external source: run `python3 scripts/download_datasets.py --id <id>`, then place a trace CSV at `data/<id>/trace.csv` with columns `time_s`, `received_bytes` (or `actual_bps`), and optionally `rtt_ms`, `jitter_ms`. Then run validation with `--source <id>`.
+To use an external source: run `./scripts/data.sh download --id <id>`, then place a trace CSV at `data/<id>/trace.csv` with columns `time_s`, `received_bytes` (or `actual_bps`), and optionally `rtt_ms`, `jitter_ms`. Then run validation with `./scripts/test.sh <id>`.

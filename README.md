@@ -1,40 +1,42 @@
+---
 # BBR-based Bandwidth Estimation Demo
 
-BWE (Bandwidth Estimation) 是一个跨平台 C++ 模块，用于移动设备（iOS 和 Android）的带宽和网络质量估测。它借鉴了 GCC 和 BBRv2 的设计理念，能够处理每秒的播放器统计数据（如抖动、延迟、接收字节数、缓冲级别等），为自适应比特率 (ABR) 和用户体验质量 (QoE) 提供带宽及质量估计。
+BWE (Bandwidth Estimation) is a cross-platform C++ module for mobile devices (iOS and Android) to estimate bandwidth and network quality. Inspired by GCC and BBRv2, it processes per-second player statistics (e.g., jitter, RTT, received bytes, buffer level, etc.) to provide bandwidth and quality estimates for ABR (adaptive bitrate) and QoE (quality of experience).
 
-## 目录结构
+## Directory Structure
 
-- **`src/network`**: 数据模型和测量收集。
-- **`src/bwe`**: 信号预处理、BWE 核心算法和质量评分。
-- **`test_common`**: **测试专用**的合成数据生成工具，包括 [`network_simulator.cpp`](test_common/network_simulator.cpp)，生成 1 Hz 跟踪数据供验证单元测试。
-- **`src/api`**: 集成到播放器的公共 API。
-- **`tests`**: 单元测试。
-- **`tools`**: 包括 **拟合运行器**，基于模拟（或记录）数据运行 BWE 并评估带宽估算效果。
-- **`scripts`**: 各类脚本工具（含验证和绘图脚本）。
+- **`src/network`**: Data models and measurement collection.
+- **`src/bwe`**: Signal preprocessing, core BWE algorithms, and quality scoring.
+- **`test_common`**: **Test-specific synthetic data generation tools**, such as [`network_simulator.cpp`](test_common/network_simulator.cpp), which generates 1 Hz trace data for validation and unit tests.
+- **`src/api`**: Public APIs for integration with media players.
+- **`tests`**: Unit tests.
+- **`tools`**: Includes **fitting runners** to compare simulated or recorded data against estimation results.
+- **`scripts`**: Variety of tools for validation and plotting.
 
-## 快速开始
+## Getting Started
 
-### 获取数据集
-运行以下命令下载所需数据集：
+### Downloading Datasets
+Run the following command to fetch required datasets:
 ```bash
 ./scripts/download.sh [source]
 ```
 
-### 生成模拟数据
-生成指定时长（单位：秒）的测试数据：
+### Generating Synthetic Data
+Generate local test data for a specified duration (in seconds):
 ```bash
 ./scripts/generate_dummy.sh 300
 ```
 
-### 运行测试与绘图
-使用以下命令运行 BWE 模拟器并生成结果图表（`bbr_results_plot.png`）：
+### Running Tests and Plotting Results
+Run the BWE simulator with specific data sources and generate output plots (`bbr_results_plot.png`):
 ```bash
 ./scripts/test.sh [source] [additional_params...]
 ```
-提示：`scripts/plot.py` 会被自动调用，无需单独运行。
+Note: `scripts/plot.py` will be automatically called, so no need to run it separately.
 
-## 编译说明
-使用 CMake 和兼容 C++17 的编译器进行构建：
+## Compilation Instructions
+
+The project builds with CMake and a C++17-compatible compiler:
 ```bash
 mkdir -p build
 cd build
@@ -42,14 +44,15 @@ cmake ..
 cmake --build .
 ctest
 ```
-注意：需要 GoogleTest 库支持，用户可以选择让 CMake 自动下载或使用本地的现有安装。
+Dependencies include GoogleTest. CMake can download it automatically, or you can use a pre-installed version.
 
-## 示例输出
+## Example Outputs
 
-运行 `test.sh` 后，将生成以下示例输出：
-- **估算结果**：带宽估计曲线（PNG 文件）。
-- **日志文件**：运行时的详细日志。
+After running `test.sh`, you will find:
+- **Estimated Outputs**: Bandwidth estimation graphs in PNG.
+- **Log Files**: Detailed runtime logs.
 
-## 贡献指南
+## Contribution Guide
 
-欢迎任何形式的贡献！请参阅 [CONTRIBUTING.md](CONTRIBUTING.md) 了解相关贡献流程。
+We welcome contributions! Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute.
+---

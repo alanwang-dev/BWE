@@ -9,7 +9,7 @@ buffer level, etc.) and produce bandwidth and quality estimates for ABR and QoE.
 
 - `src/network`: Data models and measurement collection.
 - `src/bwe`: Signal preprocessing, BWE core algorithms, quality scoring.
-- `test_common`: **Test-only synthetic data** — [`network_simulator.cpp`](test_common/network_simulator.cpp) generates 1 Hz traces (with random spikes) for validation and unit tests. Not part of the production lib. Validation `--duration` = length of trace in seconds. See [docs/datasets.md](docs/datasets.md) for external datasets.
+- `test_common`: **Test-only synthetic data** — [`network_simulator.cpp`](test_common/network_simulator.cpp) generates 1 Hz traces (with random spikes) for validation and unit tests. Not part of the production lib. Validation `--duration` = length of trace in seconds. See [data/datasets.md](data/datasets.md) for external datasets.
 - `src/api`: Public API for integration with players.
 - `tests`: Unit tests.
 - `tools`: **Fitting runner** — runs BWE on simulated (or recorded) data and compares estimates to actual throughput.

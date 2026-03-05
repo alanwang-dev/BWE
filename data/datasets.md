@@ -1,8 +1,8 @@
 # Data sources for BWE validation
 
-## Single source of truth: config/datasets.yaml
+## Single source of truth: data/datasets.yaml
 
-All data source **ids**, **names**, and **urls** are defined in [`config/datasets.yaml`](../config/datasets.yaml). Two scripts read this config so they stay in sync:
+All data source **ids**, **names**, and **urls** are defined in [`data/datasets.yaml`](datasets.yaml). Two scripts read this config so they stay in sync:
 
 - **scripts/download_datasets.py** — `--list`, `--id <id>`, `--all` to download external sources to `data/<id>/`.
 - **scripts/run_all_fit_and_plot.py** and **validate.sh** — `--source all` or `--source <id>` to run fit on a given data source.
@@ -12,9 +12,9 @@ List valid ids: `python3 scripts/run_all_fit_and_plot.py --list`.
 ## Duration and synthetic data
 
 - **`duration`** (e.g. in `validate.sh --duration 60`) is the **length of the generated trace in seconds**. The simulator produces **one sample per second** (1 Hz).
-- **Synthetic (test-only)**: [`test_common/network_simulator.cpp`](../test_common/network_simulator.cpp). Scenario ids: see `synthetic.scenarios` in `config/datasets.yaml`.
+- **Synthetic (test-only)**: [`sim/network_simulator.cpp`](../sim/network_simulator.cpp). Scenario ids: see `synthetic.scenarios` in `data/datasets.yaml`.
 
-## External datasets (defined in config/datasets.yaml)
+## External datasets (defined in data/datasets.yaml)
 
 | id | Description |
 |----|-------------|

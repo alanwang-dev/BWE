@@ -10,7 +10,7 @@ def main():
     parser.add_argument("--id", type=str, help="Dataset ID to download")
     args, unknown = parser.parse_known_args()
 
-    config_path = "config/datasets.yaml"
+    config_path = "data/datasets.yaml"
     if not os.path.exists(config_path):
         print(f"Error: {config_path} not found.")
         sys.exit(1)
